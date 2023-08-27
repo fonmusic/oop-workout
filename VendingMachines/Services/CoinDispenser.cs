@@ -1,49 +1,54 @@
+using System.Text;
+using VendingMachines.Models;
+
 namespace VendingMachines.Services;
 
 public class CoinDispenser
 {
-    public Dictionary<int, int> CoinInventory { get; private set; } // coin value, number of coins
-    
-    public CoinDispenser(Dictionary<int, int> coinInventory)
+    private Dictionary<Coin, int> CoinInventory { get; } = new();
+    public void AddCoins(Coin coin, int quantity)
     {
-        CoinInventory = coinInventory;
+        if (CoinInventory.ContainsKey(coin))
+            CoinInventory[coin] += quantity;
+        else
+            CoinInventory.Add(coin, quantity);
     }
 
-    public Dictionary<int, int> Dispense(int changeAmount)
+    public void RemoveCoins(Coin coin, int quantity)
     {
-        var changeCoins = new Dictionary<int, int>();
+        if (CoinInventory.ContainsKey(coin))
+        {
+            if (CoinInventory[coin] >= quantity)
+                CoinInventory[coin] -= quantity;
+            else
+                throw new InvalidOperationException("Not enough coins to remove.");
+        }
+        else
+            throw new KeyNotFoundException("Coin not found in inventory.");
+    }
+    
+    public bool CanMakeChange(decimal amount)
+    {
+        foreach (var coin in CoinInventory.Keys.OrderByDescending(c => c.Value))
+        {
+            var maxCoins = (int)(amount / coin.Value);
+            if (CoinInventory.TryGetValue(coin, out var availableCoins) && availableCoins >= maxCoins)
+            {
+                return true;
+            }
+        }
+        return false;
+    }
 
+    public override string ToString()
+    {
+        var sb = new StringBuilder();
+        sb.AppendLine("Coin inventory:");
         foreach (var coin in CoinInventory.Keys)
         {
-            var numCoins = Math.Min(changeAmount / coin, CoinInventory[coin]);
-            if (numCoins > 0)
-            {
-                changeCoins.Add(coin, numCoins);
-                changeAmount -= numCoins * coin;
-                CoinInventory[coin] -= numCoins;
-            }
-
-            if (changeAmount == 0)
-                break;
+            sb.AppendLine($"{coin} - {CoinInventory[coin]}");
         }
 
-        if (changeAmount > 0)
-        {
-            throw new Exception("Not enough coins to dispense change");
-            
-        }
-
-        return changeCoins;
-    }
-    
-    public void RefillCoins(Dictionary<int, int> additionalCoins)
-    {
-        foreach (var coin in additionalCoins.Keys)
-        {
-            if (CoinInventory.ContainsKey(coin))
-                CoinInventory[coin] += additionalCoins[coin];
-            else
-                CoinInventory.Add(coin, additionalCoins[coin]);
-        }
+        return sb.ToString();
     }
 }

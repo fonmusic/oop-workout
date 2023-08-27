@@ -2,14 +2,17 @@ namespace VendingMachines.Models;
 
 public class Place
 {
-    public int Row { get; private set; }
-    public int Column { get; private set; }
-    public bool IsFree { get; set; }
+    private readonly int _row;
+    private readonly int _column;
 
-    public Place(int row, int column, bool isFree)
+    public Place(int row, int column)
     {
-        this.Row = row;
-        this.Column = column;
-        this.IsFree = isFree;
+        _row = row;
+        _column = column;
+    }
+    
+    public override string ToString()
+    {
+        return $"({_row}, {_column})";
     }
 }

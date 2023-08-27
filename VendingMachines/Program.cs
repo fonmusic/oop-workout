@@ -1,32 +1,30 @@
 ﻿using VendingMachines.Models;
 using VendingMachines.Services;
 
-var product1 = new Product("Coca-Cola", 10);
-var product2 = new Product("Snikers", 15);
-var product3 = new Product("Lays", 20);
+var vendingMachine = new VendingMachine();
 
-var vendingMachine = new VendingMachine(5, 5, new Dictionary<int, int>
-{
-    {1, 10},
-    {2, 10},
-    {5, 10},
-    {10, 10},
-    {20, 10},
-    {50, 10}
-});
+var coinDispenser = vendingMachine.CoinDispenser;
+coinDispenser.AddCoins(new Coin(1), 10);
+coinDispenser.AddCoins(new Coin(0.5m), 20);
+coinDispenser.AddCoins(new Coin(0.25m), 30);
 
-vendingMachine.AddProduct(product1);
-vendingMachine.AddProduct(product2);
-vendingMachine.AddProduct(product3);
+var snikers = new Product("Snikers", 1.5m);
+var snikersPlace = new Place(1, 1);
+vendingMachine.LoadProduct(snikersPlace, snikers);
 
+var cocacola = new Bottle("Coca-Cola", 2.0m, 500);
+var cocacolaPlace = new Place(1, 2);
+vendingMachine.LoadProduct(cocacolaPlace, cocacola);
 
-Console.WriteLine("List of products after adding:");
+var coffee = new HotDrink("Coffee", 1.0m, 80);
+var coffeePlace = new Place(2, 1);
+vendingMachine.LoadProduct(coffeePlace, coffee);
 Console.WriteLine(vendingMachine);
 
-Console.WriteLine($"Get product - {vendingMachine.GetProduct("Coca-Cola")}");
+var insertedAmount = 2.0m;
 
-Console.WriteLine("List of products after getting:");
-Console.WriteLine(vendingMachine);
+Console.WriteLine(vendingMachine.BuyProduct(snikersPlace, insertedAmount)
+    ? "Purchase successful!"
+    : "Purchase failed. Not enough money or change unavailable.");
 
-
-
+Console.WriteLine($"Total sales: ${vendingMachine.CalculateTotalSales()}");
