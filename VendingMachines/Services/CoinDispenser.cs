@@ -14,30 +14,32 @@ public class CoinDispenser
             CoinInventory.Add(coin, quantity);
     }
 
-    public void RemoveCoins(Coin coin, int quantity)
+    private void RemoveCoins(Coin coin, int quantity)
     {
         if (CoinInventory.ContainsKey(coin))
         {
             if (CoinInventory[coin] >= quantity)
                 CoinInventory[coin] -= quantity;
             else
-                throw new InvalidOperationException("Not enough coins to remove.");
+                throw new Exception("Not enough coins");
         }
         else
-            throw new KeyNotFoundException("Coin not found in inventory.");
+            throw new Exception("Coin not found");
     }
     
     public bool CanMakeChange(decimal amount)
     {
-        foreach (var coin in CoinInventory.Keys.OrderByDescending(c => c.Value))
+        var coins = CoinInventory.Keys.OrderByDescending(x => x.Value).ToList();
+        var change = amount;
+        foreach (var coin in coins)
         {
-            var maxCoins = (int)(amount / coin.Value);
-            if (CoinInventory.TryGetValue(coin, out var availableCoins) && availableCoins >= maxCoins)
+            while (change >= coin.Value && CoinInventory[coin] > 0)
             {
-                return true;
+                change -= coin.Value;
+                CoinInventory[coin]--;
             }
         }
-        return false;
+        return change == 0;
     }
 
     public override string ToString()
