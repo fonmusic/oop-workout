@@ -3,16 +3,16 @@ namespace VendingMachines.Models;
 public class Place
 {
     private readonly int _row;
-    private readonly int _column;
+    private readonly ProductType _category;
 
-    public Place(int row, int column)
+    public Place(int row, ProductType category)
     {
         _row = row;
-        _column = column;
+        _category = category;
     }
     
     public override string ToString()
     {
-        return $"({_row}, {_column})";
+        return $"row: {_row}, category: {_category}";
     }
 }

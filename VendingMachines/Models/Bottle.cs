@@ -4,7 +4,7 @@ public class Bottle : Product
 {
     private readonly double _volume;
     
-    public Bottle(string name, decimal price, double volume) : base(name, price)
+    public Bottle(string name, decimal price, double volume, Place place) : base(name, price, place)
     {
         _volume = volume;
     }

@@ -5,40 +5,36 @@ namespace VendingMachines.Services;
 
 public class VendingMachine
 {
-    private Dictionary<Place, Product> Inventory { get; } = new();
+    public Holder<Product> Holder { get; } = new();
     public CoinDispenser CoinDispenser { get; } = new();
     public decimal TotalSales { get; private set; }
-
-    public void LoadProduct(Place place, Product product)
+    
+    public void LoadProduct(Product product)
     {
-        Inventory[place] = product;
+        Holder.Inventory.Add(product);
+    }
+    
+    private void UnloadProduct(Product product)
+    {
+        Holder.Inventory.Remove(product);
     }
 
-    private void UnloadProduct(Place place)
+    public bool BuyProduct(Product product, decimal amount)
     {
-        Inventory.Remove(place);
-    }
-
-    public bool BuyProduct(Place place, decimal amount)
-    {
-        if (!Inventory.TryGetValue(place, out var product)) return false;
+        if (!Holder.Inventory.Contains(product)) return false;
         if (product.Price > amount) return false;
         if (!CoinDispenser.CanMakeChange(amount - product.Price)) return false;
-        UnloadProduct(place);
+        UnloadProduct(product);
         TotalSales += product.Price;
         return true;
     }
-    
+
     public override string ToString()
     {
         var sb = new StringBuilder();
-        sb.AppendLine("Products:");
-        foreach (var place in Inventory.Keys)
-        {
-            sb.AppendLine($"{place} : {Inventory[place]}");
-        }
+        sb.AppendLine("Vending Machine:");
+        sb.AppendLine(Holder.ToString());
         sb.AppendLine(CoinDispenser.ToString());
         return sb.ToString();
     }
- 
 }
