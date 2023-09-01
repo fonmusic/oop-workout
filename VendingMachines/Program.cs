@@ -28,6 +28,7 @@ for (var i = 0; i < numberOfProducts; i++)
     var name = Console.ReadLine();
     Console.Write("Please, enter the price of the product: ");
     var price = decimal.Parse(Console.ReadLine() ?? string.Empty);
+    Console.WriteLine($"Price: {price} usd will be the same for all next products with the name {name}!");
     Console.Write("Please, enter the type of the product (Bottle (1), HotDrink (2) or Snack (3)): ");
     var type = Console.ReadLine();
     switch (type)
@@ -35,15 +36,17 @@ for (var i = 0; i < numberOfProducts; i++)
         case "1":
             Console.Write("Please, enter the volume of the bottle: ");
             var volume = double.Parse(Console.ReadLine() ?? string.Empty);
-            productList.Add(new Bottle(name, price, volume));
+            if (name != null) productList.Add(new Bottle(name, price, volume));
+            Console.WriteLine($"Volume: {volume} ml will be the same for all next bottles with the name {name}!");
             break;
         case "2":
             Console.Write("Please, enter the temperature of the drink: ");
             var temperature = int.Parse(Console.ReadLine() ?? string.Empty);
-            productList.Add(new HotDrink(name, price, temperature));
+            if (name != null) productList.Add(new HotDrink(name, price, temperature));
+            Console.WriteLine($"Temperature: {temperature} C will be the same for all next hot drinks with the name {name}!");
             break;
         case "3":
-            productList.Add(new Product(name, price));
+            if (name != null) productList.Add(new Product(name, price));
             break;
     }
 }
