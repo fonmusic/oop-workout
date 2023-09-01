@@ -2,17 +2,45 @@ namespace VendingMachines.Models;
 
 public class Place
 {
-    private readonly int _row;
-    private readonly ProductType _category;
+    public int Id { get; }
+    public int Capacity { get; set; }
+    public Product? Product { get; private set; }
+    public int ProductCount { get; private set; }
+    public string Label => Product?.ToString() ?? "empty";
 
-    public Place(int row, ProductType category)
+    public Place(int id, int capacity)
     {
-        _row = row;
-        _category = category;
+        Id = id;
+        Capacity = capacity;
+        ProductCount = 0;
     }
+    
+    public void AddProduct(Product product)
+    {
+        if (Product == null)
+        {
+            Product = product;
+            ProductCount++;
+        }
+        else if (Product.Name == product.Name)
+        {
+            ProductCount++;
+        }
+    }
+
+    public void RemoveProduct()
+    {
+        if (ProductCount <= 0) return;
+        ProductCount--;
+        if (ProductCount == 0)
+        {
+            Product = null;
+        }
+    }
+    
     
     public override string ToString()
     {
-        return $"row: {_row}, category: {_category}";
+        return $"Place {Id}: {Label} ({ProductCount} pcs)";
     }
 }

@@ -4,7 +4,7 @@ public class HotDrink : Product
 {
     private readonly int _temperature;
     
-    public HotDrink(string name, decimal price, int temperature, Place place) : base(name, price, place)
+    public HotDrink(string name, decimal price, int temperature) : base(name, price)
     {
         _temperature = temperature;
     }

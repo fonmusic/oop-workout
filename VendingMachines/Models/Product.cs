@@ -2,15 +2,13 @@ namespace VendingMachines.Models;
 
 public class Product
 {
-    protected string Name { get; }
+    public string Name { get; }
     public decimal Price { get; }
-    public Place Place { get; }
 
-    public Product(string name, decimal price, Place place)
+    public Product(string name, decimal price)
     {
         Name = name;
         Price = price;
-        Place = place;
     }
 
     public override string ToString()
