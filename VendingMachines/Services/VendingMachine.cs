@@ -19,6 +19,14 @@ public class VendingMachine
         Holder.LoadProduct(product);
     }
     
+    public void LoadProduct(List<Product> productList)
+    {
+        foreach (var product in productList)
+        {
+            Holder.LoadProduct(product);
+        }
+    }
+    
     private void UnloadProduct(Product product)
     {
         Holder.UnloadProduct(product);
@@ -29,18 +37,24 @@ public class VendingMachine
         var place = Holder.Inventory.FirstOrDefault(p => p.Id == placeId);
         if (place?.Product == null)
         {
-            Console.WriteLine($"{place?.Product} not found");
+            Console.WriteLine($"This place is empty.");
+            Console.WriteLine($"Change: ${CoinDispenser.InputAmount}");
+            CoinDispenser.ResetInputAmount();
             return;
         }
         var product = place.Product;
         if (place.Product.Price > CoinDispenser.InputAmount)
         {
             Console.WriteLine("Not enough money");
+            Console.WriteLine($"Change: ${CoinDispenser.InputAmount}");
+            CoinDispenser.ResetInputAmount();
             return;
         }
         if (!CoinDispenser.CanMakeChange(product.Price))
         {
             Console.WriteLine("Not enough coins for change");
+            Console.WriteLine($"Change: ${CoinDispenser.InputAmount}");
+            CoinDispenser.ResetInputAmount();
             return;
         }
         UnloadProduct(place.Product);
@@ -48,7 +62,7 @@ public class VendingMachine
         CoinDispenser.InsertMoney(CoinDispenser.InputAmount - product.Price);
         Console.WriteLine($"Purchase successful! Get your {product.Name}!");
         Console.WriteLine($"Change: ${CoinDispenser.ChangeAmount}");
-        CoinDispenser.ChangeAmount = 0;
+        CoinDispenser.ResetChangeAmount();
     }
     
     public void AddCoins(Coin coin, int quantity)
