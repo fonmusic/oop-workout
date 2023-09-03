@@ -2,9 +2,9 @@ using SuperMarket.Interfaces;
 
 namespace SuperMarket.Classes;
 
-public class TaxInspector : IActorBehaviour
+public class TaxInspector :  IActorBehaviour
 {
-    private string Name { get; set; } = "Tax auditor";
+    private string Name { get; set; } = "Tax Inspector";
     public bool TookOrder { get; set; }
     public bool MadeOrder { get; set; }
 

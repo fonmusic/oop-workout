@@ -25,13 +25,26 @@ public class Market : IMarketBehaviour, IQueueBehaviour
     {
         TakeOrder();
         GiveOrder();
+        ReturnOrderAndMoney();
         ReleaseFromQueue();
+    }
+
+    private void ReturnOrderAndMoney()
+    {
+        foreach (var actor in _queue)
+        {
+            if (actor.GetActor() is not IReturnOrder returnOrderClient) continue;
+            returnOrderClient.ReturnOrder();
+            returnOrderClient.MoneyReturn();
+        }
     }
 
     public void TakeInQueue(IActorBehaviour actor)
     {
         _queue.Add(actor);
-        Console.WriteLine($"{actor.GetActor().Name} took a place in the queue");
+        Console.WriteLine(actor is TaxInspector
+            ? $"{actor.GetActor().Name} started checking documents"
+            : $"{actor.GetActor().Name} took a place in the queue");
     }
 
     public void ReleaseFromQueue()
@@ -42,6 +55,7 @@ public class Market : IMarketBehaviour, IQueueBehaviour
             releaseActors.Add(actor.GetActor());
             Console.WriteLine($"{actor.GetActor().Name} left the queue");
         }
+
         ReleaseFromMarket(releaseActors);
     }
 
@@ -50,7 +64,17 @@ public class Market : IMarketBehaviour, IQueueBehaviour
         foreach (var actor in _queue.Where(actor => !actor.GetActor().TookOrder))
         {
             actor.GetActor().TookOrder = true;
-            Console.WriteLine($"{actor.GetActor().Name} took the order");
+            switch (actor)
+            {
+                case TaxInspector:
+                    break;
+                case PromotionalClient promotionalClient:
+                    Console.WriteLine($"{actor.GetActor().Name} took the order for {promotionalClient.PromotionName}");
+                    break;
+                default:
+                    Console.WriteLine($"{actor.GetActor().Name} took the order");
+                    break;
+            }
         }
     }
 
@@ -59,7 +83,15 @@ public class Market : IMarketBehaviour, IQueueBehaviour
         foreach (var actor in _queue.Where(actor => actor.GetActor().TookOrder && !actor.GetActor().MadeOrder))
         {
             actor.GetActor().MadeOrder = true;
-            Console.WriteLine($"{actor.GetActor().Name} gave the order");
+            switch (actor)
+            {
+                case PromotionalClient promotionalClient:
+                    Console.WriteLine($"{actor.GetActor().Name} gave the order: {promotionalClient.PromotionName}");
+                    break;
+                default:
+                    Console.WriteLine($"{actor.GetActor().Name} gave the order");
+                    break;
+            }
         }
     }
 }
