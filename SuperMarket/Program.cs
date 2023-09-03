@@ -1,22 +1,25 @@
 ﻿using SuperMarket.Classes;
 using SuperMarket.Interfaces;
 
-var magnit = new Market();
+var market = new Market();
 
-var client1 = new OrdinaryClient("Ivan Petrov");
-var client2 = new SpecialClient("James Bond", 777);
-var client3 = new TaxInspector();
-var client4 = new PromotionalClient("Maria", "Milk");
-var client5 = new PromotionalClient("Alex", "Bread");
-var client6 = new PromotionalClient("Petr", "Bear");
+IActorBehaviour client1 = new OrdinaryClient("Ivan Petrov");
+IActorBehaviour client2 = new SpecialClient("James Bond", 777);
+IActorBehaviour client3 = new TaxInspector();
+IActorBehaviour client4 = new PromotionalClient("Maria", "Milk");
+IActorBehaviour client5 = new PromotionalClient("Alex", "Bread");
+IActorBehaviour client6 = new PromotionalClient("Peter", "Beer");
+IActorBehaviour client7 = new SpecialClient("Elizabet", 2);
 
-magnit.AcceptToMarket(client1);
-magnit.AcceptToMarket(client2);
-magnit.AcceptToMarket(client3);
-magnit.AcceptToMarket(client4);
-magnit.AcceptToMarket(client5);
-magnit.AcceptToMarket(client6);
-
-magnit.Update();
 var numberOfPromotionalParticipants = PromotionalClient.NumberOfPromotionalParticipants;
 Console.WriteLine($"Number of promotional participants: {numberOfPromotionalParticipants}");
+
+market.AcceptToMarket(client1);
+market.AcceptToMarket(client2);
+market.AcceptToMarket(client3);
+market.AcceptToMarket(client4);
+market.AcceptToMarket(client5);
+market.AcceptToMarket(client6);
+market.AcceptToMarket(client7);
+
+market.Update();

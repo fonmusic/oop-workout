@@ -4,12 +4,22 @@ namespace SuperMarket.Classes;
 
 public class Market : IMarketBehaviour, IQueueBehaviour
 {
-    private List<IActorBehaviour> _queue = new();
+    private readonly List<IActorBehaviour> _queue = new();
 
     public void AcceptToMarket(IActorBehaviour actor)
     {
         Console.WriteLine($"{actor.GetActor().Name} came to the market");
         TakeInQueue(actor);
+        DenialOfService();
+    }
+    
+    private void DenialOfService()
+    {
+        var promotionalClients = _queue.Where(actor => actor is PromotionalClient).ToList();
+        if (promotionalClients.Count <= 2) return;
+        Console.WriteLine($"{promotionalClients[2].GetActor().Name} was denied service due to " +
+                          $"exceeding the number of participants in the promotion");
+        ReleaseFromMarket(new List<Actor> {promotionalClients[2].GetActor()});
     }
 
     public void ReleaseFromMarket(List<Actor> actors)
@@ -33,7 +43,7 @@ public class Market : IMarketBehaviour, IQueueBehaviour
     {
         foreach (var actor in _queue)
         {
-            if (actor.GetActor() is not IReturnOrder returnOrderClient) continue;
+            if (actor is not IReturnOrder returnOrderClient) continue;
             returnOrderClient.ReturnOrder();
             returnOrderClient.MoneyReturn();
         }
@@ -50,7 +60,7 @@ public class Market : IMarketBehaviour, IQueueBehaviour
     public void ReleaseFromQueue()
     {
         List<Actor> releaseActors = new();
-        foreach (var actor in _queue.Where(actor => actor.GetActor().TookOrder))
+        foreach (var actor in _queue.Where(actor => actor.TookOrder))
         {
             releaseActors.Add(actor.GetActor());
             Console.WriteLine($"{actor.GetActor().Name} left the queue");
@@ -61,7 +71,7 @@ public class Market : IMarketBehaviour, IQueueBehaviour
 
     public void TakeOrder()
     {
-        foreach (var actor in _queue.Where(actor => !actor.GetActor().TookOrder))
+        foreach (var actor in _queue.Where(actor => !actor.TookOrder))
         {
             actor.GetActor().TookOrder = true;
             switch (actor)
@@ -80,7 +90,7 @@ public class Market : IMarketBehaviour, IQueueBehaviour
 
     public void GiveOrder()
     {
-        foreach (var actor in _queue.Where(actor => actor.GetActor().TookOrder && !actor.GetActor().MadeOrder))
+        foreach (var actor in _queue.Where(actor => actor is { TookOrder: true, MadeOrder: false }))
         {
             actor.GetActor().MadeOrder = true;
             switch (actor)
