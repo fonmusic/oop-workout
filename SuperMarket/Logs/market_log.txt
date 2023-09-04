@@ -1,0 +1,41 @@
+Number of promotional participants: 3
+Ivan Petrov came to the market
+Ivan Petrov took a place in the queue
+James Bond 777 came to the market
+James Bond 777 took a place in the queue
+Tax Inspector came to the market
+Tax Inspector started checking documents
+Maria came to the market
+Maria took a place in the queue
+Alex came to the market
+Alex took a place in the queue
+Peter came to the market
+Peter took a place in the queue
+Peter was denied service due to exceeding the number of participants in the promotion
+Peter left the market
+Elizabet 2 came to the market
+Elizabet 2 took a place in the queue
+Ivan Petrov took the order
+James Bond 777 took the order
+Maria took the order for Milk
+Alex took the order for Bread
+Elizabet 2 took the order
+Ivan Petrov gave the order
+James Bond 777 gave the order
+Maria gave the order: Milk
+Alex gave the order: Bread
+Elizabet 2 gave the order
+Client James Bond 777 returned order because he is VIP
+Client James Bond 777 returned money because he is VIP
+Client Elizabet 2 returned order because he is VIP
+Client Elizabet 2 returned money because he is VIP
+Ivan Petrov left the queue
+James Bond 777 left the queue
+Maria left the queue
+Alex left the queue
+Elizabet 2 left the queue
+Ivan Petrov left the market
+James Bond 777 left the market
+Maria left the market
+Alex left the market
+Elizabet 2 left the market
