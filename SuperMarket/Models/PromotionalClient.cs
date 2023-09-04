@@ -1,4 +1,4 @@
-namespace SuperMarket.Classes;
+namespace SuperMarket.Models;
 
 /// <summary>
 /// Class for promotional client

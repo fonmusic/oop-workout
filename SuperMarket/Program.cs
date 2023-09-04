@@ -1,5 +1,5 @@
-﻿using SuperMarket.Classes;
-using SuperMarket.Interfaces;
+﻿using SuperMarket.Models;
+using SuperMarket.Services;
 
 var logFolderPath = Path.Combine(Directory.GetCurrentDirectory(), "..", "..", "..", "Logs");
 Directory.CreateDirectory(logFolderPath);

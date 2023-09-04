@@ -1,6 +1,6 @@
-using SuperMarket.Interfaces;
+using SuperMarket.Models;
 
-namespace SuperMarket.Classes;
+namespace SuperMarket.Services;
 
 public class Market : IMarketBehaviour, IQueueBehaviour
 {

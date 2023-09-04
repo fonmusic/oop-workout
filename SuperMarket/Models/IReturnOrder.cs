@@ -1,4 +1,4 @@
-namespace SuperMarket.Interfaces;
+namespace SuperMarket.Models;
 
 /// <summary>
 /// Interface for returning order and money

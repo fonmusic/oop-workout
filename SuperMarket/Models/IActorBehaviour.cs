@@ -1,6 +1,4 @@
-using SuperMarket.Classes;
-
-namespace SuperMarket.Interfaces;
+namespace SuperMarket.Models;
 
 public interface IActorBehaviour
 {

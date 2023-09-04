@@ -1,6 +1,4 @@
-using SuperMarket.Interfaces;
-
-namespace SuperMarket.Classes;
+namespace SuperMarket.Models;
 
 public class TaxInspector :  IActorBehaviour
 {

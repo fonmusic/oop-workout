@@ -1,6 +1,6 @@
-using SuperMarket.Classes;
+using SuperMarket.Models;
 
-namespace SuperMarket.Interfaces;
+namespace SuperMarket.Services;
 
 public interface IMarketBehaviour
 {

@@ -1,4 +1,6 @@
-namespace SuperMarket.Interfaces;
+using SuperMarket.Models;
+
+namespace SuperMarket.Services;
 
 public interface IQueueBehaviour
 {
