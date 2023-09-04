@@ -39,6 +39,10 @@ public class Market : IMarketBehaviour, IQueueBehaviour
         ReleaseFromQueue();
     }
 
+    /// <summary>
+    /// Method for returning order and money
+    /// It checks if client is IReturnOrder and if it is, it calls methods for returning order and money
+    /// </summary>
     private void ReturnOrderAndMoney()
     {
         foreach (var actor in _queue)

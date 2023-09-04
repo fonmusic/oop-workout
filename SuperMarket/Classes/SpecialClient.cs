@@ -12,12 +12,20 @@ public class SpecialClient : Actor, IReturnOrder
         Name = $"{name} {idVip}";
         IdVip = idVip;
     }
-
+    
+    /// <summary>
+    /// Method for returning order
+    /// It is implemented from IReturnOrder interface and prints message that client returned order
+    /// </summary>
     public void ReturnOrder()
     {
         Console.WriteLine($"Client {Name} returned order because he is VIP");
     }
 
+    /// <summary>
+    /// Method for returning money
+    /// It is implemented from IReturnOrder interface and prints message that client returned money
+    /// </summary>
     public void MoneyReturn()
     {
         Console.WriteLine($"Client {Name} returned money because he is VIP");

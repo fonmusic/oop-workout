@@ -1,5 +1,8 @@
 namespace SuperMarket.Classes;
 
+/// <summary>
+/// Class for promotional client
+/// </summary>
 public class PromotionalClient : Actor
 {
     public sealed override string Name { get; set; }
