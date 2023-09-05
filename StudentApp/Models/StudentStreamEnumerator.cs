@@ -2,6 +2,9 @@ using System.Collections;
 
 namespace StudentApp.Models;
 
+/// <summary>
+/// Student stream enumerator.
+/// </summary>
 public class StudentStreamEnumerator : IEnumerator<StudentGroup>
 {
     private List<StudentGroup> Stream { get; set; }

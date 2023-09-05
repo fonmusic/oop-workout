@@ -21,6 +21,13 @@ public class StudentGroup : IEnumerable<Student>, IComparable<StudentGroup>
         return new StudentEnumerator(Group);
     }
 
+    /// <summary>
+    /// Compare two groups by number of students.
+    /// </summary>
+    /// <param name="other">Other group.</param>
+    /// <returns>1 if this group has more students,
+    /// -1 if other group has more students,
+    /// 0 if groups have the same number of students.</returns>
     public int CompareTo(StudentGroup? other)
     {
         // by number of students
