@@ -2,7 +2,7 @@ using System.Collections;
 
 namespace StudentApp.Models;
 
-public class StudentGroup : IEnumerable<Student>
+public class StudentGroup : IEnumerable<Student>, IComparable<StudentGroup>
 {
     public List<Student> Group { get; private set; }
     public int GroupId { get; private set; }
@@ -18,6 +18,16 @@ public class StudentGroup : IEnumerable<Student>
     {
         // return Group.GetEnumerator();
         return new StudentEnumerator(Group);
+    }
+
+    public int CompareTo(StudentGroup? other)
+    {
+        // by number of students
+        if (Group.Count > other!.Group.Count)
+            return 1;
+        if (Group.Count < other!.Group.Count)
+            return -1;
+        return 0;
     }
 
     public override string ToString()

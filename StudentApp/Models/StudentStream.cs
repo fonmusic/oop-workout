@@ -21,4 +21,14 @@ public class StudentStream : IEnumerable<StudentGroup>
     {
         return GetEnumerator();
     }
+    
+    public void Sort()
+    {
+        Stream.Sort();
+    }
+    
+    public override string ToString()
+    {
+        return $"Stream: {string.Join(", ", Stream)}";
+    }
 }
