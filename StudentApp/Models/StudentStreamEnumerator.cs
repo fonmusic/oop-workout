@@ -2,20 +2,19 @@ using System.Collections;
 
 namespace StudentApp.Models;
 
-public class StudentEnumerator : IEnumerator<Student>
+public class StudentStreamEnumerator : IEnumerator<StudentGroup>
 {
-    private List<Student> Group { get; set; }
+    private List<StudentGroup> Stream { get; set; }
     private int _position = -1;
-
-    public StudentEnumerator(List<Student> group)
+    public StudentStreamEnumerator(List<StudentGroup> stream)
     {
-        Group = group;
+        Stream = stream;
     }
 
     public bool MoveNext()
     {
         _position++;
-        return _position < Group.Count;
+        return _position < Stream.Count;
     }
 
     public void Reset()
@@ -23,12 +22,11 @@ public class StudentEnumerator : IEnumerator<Student>
         _position = -1;
     }
 
-    public Student Current => Group[_position];
+    public StudentGroup Current => Stream[_position];
 
     object IEnumerator.Current => Current;
 
     public void Dispose()
     {
-        // throw new NotImplementedException();
     }
 }
