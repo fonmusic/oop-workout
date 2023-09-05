@@ -1,13 +1,14 @@
-﻿using StudentApp.Models;
+﻿using System.Threading.Channels;
+using StudentApp.Models;
 
 var s1 = new Student("Иван", 25);
 var s2 = new Student("Игорь", 23);
 var s3 = new Student("Иван", 22);
 
-var s4 = new Student("Игорь", 23);
+var s4 = new Student("Игорь", 18);
 var s5 = new Student("Даша", 23);
-var s6 = new Student("Лена", 23);
-var s7 = new Student("Игорь", 23);
+var s6 = new Student("Лена", 20);
+var s7 = new Student("Игорь", 19);
 
 var s8 = new Student("Даша", 22);
 var s9 = new Student("Лена", 21);
@@ -46,36 +47,24 @@ var stream = new StudentStream(new List<StudentGroup>
     group5123,
 });
 
-Console.WriteLine("Unsorted stream:");
-foreach(var group in stream)
-{
-    Console.WriteLine(group);
-    foreach (var student in group)
-    {
-        Console.WriteLine(student);
-    }
-}
+Console.ForegroundColor = ConsoleColor.Green;
+Console.WriteLine("Unsorted stream with unsorted groups:");
+Console.WriteLine(stream);
 
+Console.ForegroundColor = ConsoleColor.Yellow;
+Console.WriteLine("We sort all students in each group by age:");
+foreach (var group in stream)
+{
+    group.Sort();
+}
+Console.WriteLine(stream);
+
+Console.ForegroundColor = ConsoleColor.Red;
+Console.WriteLine("We sort all groups by number of students:");
 stream.Sort();
-Console.WriteLine("Stream sorted by number of students:");
-foreach(var group in stream)
-{
-    Console.WriteLine(group);
-    group.Sort();
-    foreach (var student in group)
-    {
-        Console.WriteLine(student);
-    }
-}
+Console.WriteLine(stream);
 
+Console.ForegroundColor = ConsoleColor.Blue;
+Console.WriteLine("We sort all groups by group id:");
 stream.SortById();
-Console.WriteLine("Stream sorted by group id:");
-foreach(var group in stream)
-{
-    Console.WriteLine(group);
-    group.Sort();
-    foreach (var student in group)
-    {
-        Console.WriteLine(student);
-    }
-}
+Console.WriteLine(stream);

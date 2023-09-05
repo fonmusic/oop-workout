@@ -1,4 +1,5 @@
 using System.Collections;
+using System.Text;
 
 namespace StudentApp.Models;
 
@@ -29,11 +30,19 @@ public class StudentGroup : IEnumerable<Student>, IComparable<StudentGroup>
             return -1;
         return 0;
     }
-
+    
     public override string ToString()
     {
-        // return $"GroupId: {GroupId}, \nGroup: {string.Join(", ", Group)}";
-        return $"Group Id: {GroupId}";
+        var sb = new StringBuilder();
+        sb.Append($"Group Id: {GroupId}, Count of students: {Group.Count}");
+        sb.Append('\n');
+        foreach (var student in Group)
+        {
+            sb.Append(student);
+            sb.Append('\n');
+        }
+        sb.Append('\n');
+        return sb.ToString();
     }
 
     IEnumerator IEnumerable.GetEnumerator()

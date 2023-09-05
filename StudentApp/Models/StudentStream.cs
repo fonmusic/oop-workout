@@ -1,14 +1,19 @@
 using System.Collections;
+using System.Text;
 
 namespace StudentApp.Models;
 
 public class StudentStream : IEnumerable<StudentGroup>
 {
     public List<StudentGroup> Stream { get; private set; }
+    public int StreamId { get; private set; }
+    public int NumberOfGroups { get; private set; }
     
     public StudentStream(List<StudentGroup> stream)
     {
         Stream = stream;
+        StreamId = stream[0].GroupId / 100;
+        NumberOfGroups = stream.Count;
     }
 
     public IEnumerator<StudentGroup> GetEnumerator()
@@ -34,6 +39,14 @@ public class StudentStream : IEnumerable<StudentGroup>
     
     public override string ToString()
     {
-        return $"Stream: {string.Join(", ", Stream)}";
+        var sb = new StringBuilder();
+        sb.Append($"Stream Id: {StreamId}, Count of groups: {NumberOfGroups}");
+        sb.Append('\n');
+        foreach (var group in Stream)
+        {
+            sb.Append(group);
+        }
+        sb.Append('\n');
+        return sb.ToString();
     }
 }
