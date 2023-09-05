@@ -41,13 +41,35 @@ var group5125 = new StudentGroup(students3, 5125);
 
 var stream = new StudentStream(new List<StudentGroup>
 {
-    group5123,
-    group5124,
     group5125,
+    group5124,
+    group5123,
 });
 
-stream.Sort();
+Console.WriteLine("Unsorted stream:");
+foreach(var group in stream)
+{
+    Console.WriteLine(group);
+    foreach (var student in group)
+    {
+        Console.WriteLine(student);
+    }
+}
 
+stream.Sort();
+Console.WriteLine("Stream sorted by number of students:");
+foreach(var group in stream)
+{
+    Console.WriteLine(group);
+    group.Sort();
+    foreach (var student in group)
+    {
+        Console.WriteLine(student);
+    }
+}
+
+stream.SortById();
+Console.WriteLine("Stream sorted by group id:");
 foreach(var group in stream)
 {
     Console.WriteLine(group);

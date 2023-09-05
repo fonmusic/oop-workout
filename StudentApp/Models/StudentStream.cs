@@ -27,6 +27,11 @@ public class StudentStream : IEnumerable<StudentGroup>
         Stream.Sort();
     }
     
+    public void SortById()
+    {
+        Stream.Sort((group1, group2) => group1.GroupId.CompareTo(group2.GroupId));
+    }
+    
     public override string ToString()
     {
         return $"Stream: {string.Join(", ", Stream)}";
