@@ -56,7 +56,7 @@ public class StudentStream : IEnumerable<StudentGroup>
         var sb = new StringBuilder();
         sb.Append($"Stream Id: {StreamId}, Count of groups: {NumberOfGroups}");
         sb.Append('\n');
-        foreach (var group in Stream)
+        foreach (var group in this)
         {
             sb.Append(group);
         }

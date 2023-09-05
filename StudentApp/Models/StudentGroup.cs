@@ -43,7 +43,7 @@ public class StudentGroup : IEnumerable<Student>, IComparable<StudentGroup>
         var sb = new StringBuilder();
         sb.Append($"Group Id: {GroupId}, Count of students: {Group.Count}");
         sb.Append('\n');
-        foreach (var student in Group)
+        foreach (var student in this)
         {
             sb.Append(student);
             sb.Append('\n');
