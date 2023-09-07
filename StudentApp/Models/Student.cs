@@ -1,6 +1,6 @@
 namespace StudentApp.Models;
 
-public class Student : Person<PersonInfo<string>>, IComparable<Student>
+public class Student : Person<string>, IComparable<Student>
 {
     public int Id { get; }
     private static int _generalId;

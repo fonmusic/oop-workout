@@ -11,10 +11,9 @@ public class StudentService : IPersonService<Student>
         return _students;
     }
 
-    public void Create(string name, int age, PersonInfo<string> info)
+    public void Create<T1>(string name, int age, T1 info)
     {
-        _students.Add(new Student(name, age, info.Value));
+        if (info is not null)
+            _students.Add(new Student(name, age, info.ToString() ?? throw new InvalidOperationException()));
     }
-    
 }
- 

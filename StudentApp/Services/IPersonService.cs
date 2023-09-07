@@ -5,5 +5,5 @@ namespace StudentApp.Services;
 public interface IPersonService<T>
 {
     List<T> GetAll();
-    void Create(string name, int age, PersonInfo<string> info);
+    void Create<T1>(string name, int age, T1 info);
 }
