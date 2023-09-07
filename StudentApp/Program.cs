@@ -1,5 +1,6 @@
-﻿using System.Threading.Channels;
+﻿using StudentApp.Controllers;
 using StudentApp.Models;
+using StudentApp.Services;
 
 var s1 = new Student("Иван", 25);
 var s2 = new Student("Игорь", 23);
@@ -12,8 +13,6 @@ var s7 = new Student("Игорь", 19);
 
 var s8 = new Student("Даша", 22);
 var s9 = new Student("Лена", 21);
-
-
 
 var students1 = new List<Student>
 {
@@ -57,6 +56,7 @@ foreach (var group in stream)
 {
     group.Sort();
 }
+
 Console.WriteLine(stream);
 
 Console.ForegroundColor = ConsoleColor.Red;
@@ -68,3 +68,18 @@ Console.ForegroundColor = ConsoleColor.Blue;
 Console.WriteLine("We sort all groups by group id:");
 stream.SortById();
 Console.WriteLine(stream);
+
+Console.ForegroundColor = ConsoleColor.Cyan;
+var allStudents = students1.Concat(students2).Concat(students3).ToList();
+Console.WriteLine($"Average age of all students in stream: {AccountController.AverageAge(allStudents)}");
+
+Console.ForegroundColor = ConsoleColor.DarkBlue;
+var teacherService = new TeacherService();
+teacherService.Create("Bill Smith", 45, "Math");
+teacherService.Create("Mery Smith", 41, "Biology");
+teacherService.Create("Adam Johnson", 35, "Physics");
+teacherService.Create("Tom Johnson", 33, "Chemistry");
+
+var allTeachers = teacherService.GetAll();
+Console.WriteLine($"Average age of all teachers: {AccountController.AverageAge(allTeachers)}");
+teacherService.PrintSortedByNames();
