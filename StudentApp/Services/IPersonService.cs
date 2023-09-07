@@ -1,7 +1,9 @@
+using StudentApp.Models;
+
 namespace StudentApp.Services;
 
 public interface IPersonService<T>
 {
     List<T> GetAll();
-    void Create<T1>(string name, int age, T1 info);
+    void Create(string name, int age, PersonInfo<string> info);
 }

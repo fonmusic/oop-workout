@@ -1,6 +1,6 @@
 namespace StudentApp.Models;
 
-public class Employee : Person<string>
+public class Employee : Person<PersonInfo<string>>
 {
     public string Profession { get; private set; }
 
