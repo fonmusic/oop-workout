@@ -1,11 +1,16 @@
 namespace StudentApp.Models;
 
-public class Student : Person, IComparable<Student>
+public class Student : Person<string>, IComparable<Student>
 {
     public int Id { get; }
     private static int _generalId;
-    
-    public Student(string name, int age) : base(name, age)
+
+    public Student(string name, int age, string info) : base(name, age, info)
+    {
+        Id = ++_generalId;
+    }
+
+    public Student(string name, int age) : base(name, age, "Student")
     {
         Id = ++_generalId;
     }

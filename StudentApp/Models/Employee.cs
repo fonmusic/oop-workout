@@ -1,12 +1,12 @@
 namespace StudentApp.Models;
 
-public class Employee : Person
+public class Employee : Person<string>
 {
     public string Profession { get; private set; }
 
-    public Employee(string name, int age, string profession) : base(name, age)
+    public Employee(string name, int age, string info) : base(name, age, info)
     {
-        Profession = profession;
+        Profession = info;
     }
     
     public override string ToString()
