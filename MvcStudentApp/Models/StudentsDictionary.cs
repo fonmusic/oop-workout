@@ -5,11 +5,14 @@ namespace MvcStudentApp.Models;
 public class StudentsDictionary : IStudentProvider
 {
     public List<Student> Students { get; }
-    public Dictionary<long, Student> StudentsMarks { get; }
+    public Dictionary<long, Student> StudentsJournal { get; } = new();
 
-    public StudentsDictionary(List<Student> students, Dictionary<long, Student> studentsMarks)
+    public StudentsDictionary(List<Student> students)
     {
         Students = students;
-        StudentsMarks = studentsMarks;
+        foreach (var student in Students)
+        {
+            StudentsJournal.Add(student.Id, student);
+        }
     }
 }

@@ -17,7 +17,7 @@ var students = new List<Student>
 // IStudentProvider studentProvider = new StudentsList(students);
 
 // Work with dictionary
-IStudentProvider studentProvider = new StudentsDictionary(students, new Dictionary<long, Student>());
+IStudentProvider studentProvider = new StudentsDictionary(students);
 
 // Work with file
 // var filePath = Path.Combine(Directory.GetCurrentDirectory(), "students.csv");

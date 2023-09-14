@@ -55,17 +55,4 @@ public class StudentsController
     {
         return _students.Count > 0;
     }
-
-    // private string GetEngOrRuMenu()
-    // {
-    //     if (_studentsView is StudentsViewRu)
-    //         return "Имеются команды: \n" +
-    //                "1. Read - прочитать всех студентов \n" +
-    //                "2. Exit - выход из программы \n" +
-    //                "Введите команду: ";
-    //     return "Available commands: \n" +
-    //            "1. Read - read all students \n" +
-    //            "2. Exit - exit from program \n" +
-    //            "Enter command: ";
-    // }
 }
