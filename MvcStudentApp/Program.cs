@@ -1,24 +1,42 @@
 ﻿using MvcStudentApp.Controllers;
 using MvcStudentApp.Models;
+using MvcStudentApp.Models.Core;
 using MvcStudentApp.Views;
 
 var students = new List<Student>
 {
-    new Student("John", 18),
-    new Student("Jane", 19),
-    new Student("Jack", 20),
-    new Student("Jill", 21),
-    new Student("James", 22),
-    new Student("Judy", 23)
+    new("John", 18),
+    new("Jane", 19),
+    new("Jack", 20),
+    new("Jill", 21),
+    new("James", 22),
+    new("Judy", 23)
 };
 
-IStudentsList studentsList = new StudentsFile("students.csv");
-//studentsList.SaveAllStudentsToFile(students);
+// Work with list
+// IStudentProvider studentProvider = new StudentsList(students);
 
-// IStudentsList studentsList = new StudentsList(students);
-IStudentsView studentsView = new StudentsViewRu();
+// Work with dictionary
+IStudentProvider studentProvider = new StudentsDictionary(students, new Dictionary<long, Student>());
 
-var studentsController = new StudentsController(studentsList, studentsView);
+// Work with file
+// var filePath = Path.Combine(Directory.GetCurrentDirectory(), "students.csv");
+// StudentsFile studentsFile = new(filePath);
+// studentsFile.SaveAllStudentsToFile(students);
+
+// IStudentsView studentsView = new StudentsViewRu();
+
+Console.WriteLine("Введите язык (ru/en): ");
+var language = Console.ReadLine()?.ToLower();
+IStudentsView studentsView = language switch
+{
+    "ru" => new StudentsViewRu(),
+    "en" => new StudentsViewEng(),
+    _ => throw new Exception("Неподдерживаемый язык")
+};
+
+// var studentsController = new StudentsController(studentsFile, studentsView);
+var studentsController = new StudentsController(studentProvider, studentsView);
 
 // studentsController.Update();
 

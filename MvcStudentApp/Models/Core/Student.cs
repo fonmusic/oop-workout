@@ -1,4 +1,4 @@
-namespace MvcStudentApp.Models;
+namespace MvcStudentApp.Models.Core;
 
 public class Student : Person
 {

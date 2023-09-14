@@ -1,12 +1,14 @@
+using MvcStudentApp.Models.Core;
+
 namespace MvcStudentApp.Models;
 
-public class StudentsFile : IStudentsList
+public class StudentsFile : IStudentProvider
 {
-     private string fileName;
+     private readonly string _fileName;
 
         public StudentsFile(string fileName)
         {
-            this.fileName = fileName;
+            _fileName = fileName;
 
             try
             {
@@ -26,7 +28,7 @@ public class StudentsFile : IStudentsList
         {
             try
             {
-                using (var sw = new StreamWriter(fileName, true))
+                using (var sw = new StreamWriter(_fileName, true))
                 {
                     foreach (var student in students)
                     {
@@ -48,7 +50,7 @@ public class StudentsFile : IStudentsList
                 var students = new List<Student>();
                 try
                 {
-                    using (var sr = new StreamReader(fileName))
+                    using (var sr = new StreamReader(_fileName))
                     {
                         while (sr.ReadLine() is { } line)
                         {

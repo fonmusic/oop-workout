@@ -1,8 +1,10 @@
+using MvcStudentApp.Models.Core;
+
 namespace MvcStudentApp.Models;
 
-public class StudentsList : IStudentsList
+public class StudentsList : IStudentProvider
 {
-    public List<Student> Students { get; private set; }
+    public List<Student> Students { get; }
     
     public StudentsList(List<Student> students)
     {

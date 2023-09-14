@@ -3,11 +3,11 @@ using MvcStudentApp.Models.Core;
 
 namespace MvcStudentApp.Views;
 
-public class StudentsViewRu : IStudentsView
+public class StudentsViewEng : IStudentsView
 {
     public void PrintAllStudents(IEnumerable<Student> students)
     {
-        Console.WriteLine("-----------Список студентов-----------:");
+        Console.WriteLine("-----------List of students-----------:");
         foreach (var student in students)
         {
             Console.WriteLine(student);
@@ -18,17 +18,17 @@ public class StudentsViewRu : IStudentsView
 
     public string GetCommand()
     {
-        ShowMenuRu();
+        ShowMenuEn();
         
         var command = Console.ReadLine()?.ToLower() ?? throw new InvalidOperationException();
         return string.Concat(command.First().ToString().ToUpper(), command.AsSpan(1));
     }
 
-    private static void ShowMenuRu()
+    private static void ShowMenuEn()
     {
-        Console.Write("Доступные команды: \n" +
-                      "1. Read - прочитать всех студентов \n" +
-                      "2. Exit - выход из программы \n" +
-                      "Введите команду: ");
+        Console.Write("Available commands: \n" +
+                      "1. Read - read all students \n" +
+                      "2. Exit - exit from program \n" +
+                      "Enter command: ");
     }
 }
