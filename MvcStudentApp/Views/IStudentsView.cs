@@ -8,5 +8,4 @@ public interface IStudentsView
     void PrintAllStudents(IEnumerable<Student> students);
     string GetCommand();
     long GetStudentId();
-    // void PrintResponse();
 }

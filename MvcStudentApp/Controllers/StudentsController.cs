@@ -29,6 +29,10 @@ public class StudentsController
         // _studentsView.PrintAllStudents(_studentsList.Students);
     }
     
+    /// <summary>
+    /// Run controller and get command from view
+    /// </summary>
+    /// <exception cref="ArgumentOutOfRangeException"></exception>
     public void Run()
     {
         var getNewIteration = true;
