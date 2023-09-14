@@ -42,6 +42,13 @@ public class StudentsController
                     getNewIteration = false;
                     Console.WriteLine(_studentsView is StudentsViewRu ? "Выход из программы" : "Exit from program");
                     break;
+                case Command.Delete:
+                    var studentId = _studentsView.GetStudentId();
+                    if (_studentProvider.IsStudentExists(studentId))
+                        _studentProvider.DeleteStudentById(studentId);
+                    else
+                        Console.WriteLine(_studentsView is StudentsViewRu ? "Студент не найден" : "Student not found");
+                    break;
                 case Command.Read:
                     _studentsView.PrintAllStudents(_studentProvider.Students);
                     break;

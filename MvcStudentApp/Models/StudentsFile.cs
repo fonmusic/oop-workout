@@ -71,4 +71,14 @@ public class StudentsFile : IStudentProvider
                 return students;
             }
         }
+
+        public void DeleteStudentById(long id)
+        {
+            Students.RemoveAll(s => s.Id == id);
+        }
+
+        public bool IsStudentExists(long studentId)
+        {
+            return Students.Any(s => s.Id == studentId);
+        }
 }

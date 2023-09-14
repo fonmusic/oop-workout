@@ -31,4 +31,11 @@ public class StudentsViewRu : IStudentsView
                       "2. Exit - выход из программы \n" +
                       "Введите команду: ");
     }
+    
+    public long GetStudentId()
+    {
+        Console.Write("Введите id студента: ");
+        var studentId = Console.ReadLine();
+        return long.Parse(studentId ?? throw new InvalidOperationException());
+    }
 }

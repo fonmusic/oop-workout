@@ -28,7 +28,15 @@ public class StudentsViewEng : IStudentsView
     {
         Console.Write("Available commands: \n" +
                       "1. Read - read all students \n" +
-                      "2. Exit - exit from program \n" +
+                      "2. Delete - delete student by id \n" +
+                      "3. Exit - exit from program \n" +
                       "Enter command: ");
+    }
+
+    public long GetStudentId()
+    {
+        Console.Write("Enter student id: ");
+        var studentId = Console.ReadLine();
+        return long.Parse(studentId ?? throw new InvalidOperationException());
     }
 }

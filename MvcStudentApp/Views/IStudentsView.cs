@@ -7,5 +7,6 @@ public interface IStudentsView
 {
     void PrintAllStudents(IEnumerable<Student> students);
     string GetCommand();
-    // string ShowMenu();
+    long GetStudentId();
+    // void PrintResponse();
 }

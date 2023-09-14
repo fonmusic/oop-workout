@@ -5,6 +5,7 @@ namespace MvcStudentApp.Models;
 public class StudentsDictionary : IStudentProvider
 {
     public List<Student> Students { get; }
+
     public Dictionary<long, Student> StudentsJournal { get; } = new();
 
     public StudentsDictionary(List<Student> students)
@@ -14,5 +15,16 @@ public class StudentsDictionary : IStudentProvider
         {
             StudentsJournal.Add(student.Id, student);
         }
+    }
+
+    public void DeleteStudentById(long id)
+    {
+        Students.RemoveAll(s => s.Id == id);
+        StudentsJournal.Remove(id);
+    }
+
+    public bool IsStudentExists(long studentId)
+    {
+        return StudentsJournal.ContainsKey(studentId);
     }
 }
