@@ -29,13 +29,13 @@ public class ComplexCalculator : ICalculable
 
     public ICalculable Multiply(ComplexNumber complexNumber)
     {
-        _result = _result * complexNumber;
+        _result *= complexNumber;
         return this;
     }
     
     public ICalculable Divide(ComplexNumber complexNumber)
     {
-        _result = _result / complexNumber;
+        _result /= complexNumber;
         return this;
     }
 

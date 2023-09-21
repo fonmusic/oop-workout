@@ -60,7 +60,9 @@ public class ViewCalculator
 
                 if (cmd != "=") continue;
                 var result = _calculator.GetResult();
+                Console.ForegroundColor = ConsoleColor.Green;
                 Console.WriteLine($"Result: {result}");
+                Console.ResetColor();
                 break;
             }
 
@@ -74,13 +76,16 @@ public class ViewCalculator
 
     private static string? PromptString(string message)
     {
+        Console.ForegroundColor = ConsoleColor.Yellow;
         Console.Write(message);
         return Console.ReadLine();
     }
 
     private static double PromptDouble(string message)
     {
+        Console.ForegroundColor = ConsoleColor.Yellow;
         Console.Write(message);
+        Console.ResetColor();
         return Convert.ToDouble(Console.ReadLine());
     }
 }
