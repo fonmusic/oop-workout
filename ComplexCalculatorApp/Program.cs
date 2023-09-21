@@ -1,7 +1,10 @@
 ﻿using ComplexCalculatorApp;
 
-var calculator = new ComplexCalculator(new ComplexNumber(0, 0));
-var decorator = new LoggerDecorator(calculator, new Logger());
-var view = new ViewCalculator(decorator);
+var initialValue = new ComplexNumber(0, 0);
+var calculator = new ComplexCalculator(initialValue);
+var logger = new Logger();
+var loggerDecorator = new LoggerDecorator(calculator, logger);
+var viewCalculator = new ViewCalculator(loggerDecorator);
 
-view.Run();
+var controller = new CalculatorController(viewCalculator, loggerDecorator);
+controller.Start();
