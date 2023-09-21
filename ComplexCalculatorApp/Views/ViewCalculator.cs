@@ -1,5 +1,8 @@
-namespace ComplexCalculatorApp;
+namespace ComplexCalculatorApp.Views;
 
+/// <summary>
+/// View for the calculator.
+/// </summary>
 public class ViewCalculator
 {
     private readonly ICalculable _calculator;
@@ -9,6 +12,9 @@ public class ViewCalculator
         _calculator = calculator;
     }
 
+    /// <summary>
+    /// Runs the interface for the calculator.
+    /// </summary>
     public void Run()
     {
         Greeting();
@@ -55,6 +61,9 @@ public class ViewCalculator
         }
     }
 
+    /// <summary>
+    /// Prints the result of the calculator.
+    /// </summary>
     private void PrintResult()
     {
         var result = _calculator.GetResult();
@@ -63,6 +72,9 @@ public class ViewCalculator
         Console.ResetColor();
     }
 
+    /// <summary>
+    /// Prints the greeting for the calculator.
+    /// </summary>
     private static void Greeting()
     {
         Console.ForegroundColor = ConsoleColor.Green;
@@ -70,6 +82,10 @@ public class ViewCalculator
         Console.ResetColor();
     }
 
+    /// <summary>
+    /// Prompts the user for a complex number.
+    /// </summary>
+    /// <returns>The complex number.</returns>
     private static ComplexNumber GetComplexNumber()
     {
         var realPart = PromptDouble("Input real part: ");
@@ -78,6 +94,11 @@ public class ViewCalculator
         return complexNumber;
     }
 
+    /// <summary>
+    /// Prompts the user for a string.
+    /// </summary>
+    /// <param name="message">The message to prompt the user with.</param>
+    /// <returns>The string.</returns>
     private static string? PromptString(string message)
     {
         Console.ForegroundColor = ConsoleColor.Yellow;
@@ -85,6 +106,11 @@ public class ViewCalculator
         return Console.ReadLine();
     }
 
+    /// <summary>
+    /// Prompts the user for a double.
+    /// </summary>
+    /// <param name="message">The message to prompt the user with.</param>
+    /// <returns></returns>
     private static double PromptDouble(string message)
     {
         Console.ForegroundColor = ConsoleColor.Yellow;

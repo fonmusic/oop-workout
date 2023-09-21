@@ -1,4 +1,4 @@
-namespace ComplexCalculatorApp;
+namespace ComplexCalculatorApp.Services;
 
 public interface ICalculable
 {

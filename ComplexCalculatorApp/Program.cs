@@ -1,6 +1,4 @@
-﻿using ComplexCalculatorApp;
-
-var initialValue = new ComplexNumber(0, 0);
+﻿var initialValue = new ComplexNumber(0, 0);
 var calculator = new ComplexCalculator(initialValue);
 var logger = new Logger();
 var loggerDecorator = new LoggerDecorator(calculator, logger);

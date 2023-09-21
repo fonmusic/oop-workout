@@ -1,5 +1,8 @@
-namespace ComplexCalculatorApp;
+namespace ComplexCalculatorApp.Models;
 
+/// <summary>
+/// Complex number.
+/// </summary>
 public class ComplexNumber
 {
     private readonly double _real;

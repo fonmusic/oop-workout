@@ -1,5 +1,8 @@
-namespace ComplexCalculatorApp;
+namespace ComplexCalculatorApp.Services;
 
+/// <summary>
+/// Decorator for the calculator.
+/// </summary>
 public class LoggerDecorator : ICalculable
 {
     private readonly ICalculable _calculator;
@@ -11,6 +14,11 @@ public class LoggerDecorator : ICalculable
         _logger = logger;
     }
 
+    /// <summary>
+    ///  Input method for the calculator.
+    /// </summary>
+    /// <param name="complexNumber">The complex number to input.</param>
+    /// <returns>The calculator.</returns>
     public ICalculable Input(ComplexNumber complexNumber)
     {
         _logger.Log($"Current value of calculator {_calculator.GetResult()}." +
@@ -19,6 +27,11 @@ public class LoggerDecorator : ICalculable
         return result;
     }
 
+    /// <summary>
+    /// Add method for the calculator.
+    /// </summary>
+    /// <param name="complexNumber">The complex number to add.</param>
+    /// <returns>The calculator.</returns>
     public ICalculable Add(ComplexNumber complexNumber)
     {
         _logger.Log($"Current value of calculator {_calculator.GetResult()}." +
@@ -27,6 +40,11 @@ public class LoggerDecorator : ICalculable
         return result;
     }
     
+    /// <summary>
+    /// Subtract method for the calculator.
+    /// </summary>
+    /// <param name="complexNumber">The complex number to subtract.</param>
+    /// <returns>The calculator.</returns>
     public ICalculable Subtract(ComplexNumber complexNumber)
     {
         _logger.Log($"Current value of calculator {_calculator.GetResult()}." +
@@ -35,6 +53,11 @@ public class LoggerDecorator : ICalculable
         return result;
     }
 
+    /// <summary>
+    /// Multiply method for the calculator.
+    /// </summary>
+    /// <param name="complexNumber">The complex number to multiply.</param>
+    /// <returns>The calculator.</returns>
     public ICalculable Multiply(ComplexNumber complexNumber)
     {
         _logger.Log($"Current value of calculator {_calculator.GetResult()}." +
@@ -43,6 +66,11 @@ public class LoggerDecorator : ICalculable
         return result;
     }
     
+    /// <summary>
+    /// Divide method for the calculator.
+    /// </summary>
+    /// <param name="complexNumber">The complex number to divide.</param>
+    /// <returns>The calculator.</returns>
     public ICalculable Divide(ComplexNumber complexNumber)
     {
         _logger.Log($"Current value of calculator {_calculator.GetResult()}." +
@@ -51,6 +79,10 @@ public class LoggerDecorator : ICalculable
         return result;
     }
 
+    /// <summary>
+    /// Gets the result of the calculator.
+    /// </summary>
+    /// <returns>The result of the calculator.</returns>
     public ComplexNumber GetResult()
     {
         var result = _calculator.GetResult();
