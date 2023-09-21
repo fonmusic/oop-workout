@@ -10,6 +10,8 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "MvcStudentApp", "MvcStudent
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "SolidLibrary", "SolidLibrary\SolidLibrary.csproj", "{5ECB360E-A0FC-442B-BD15-A7BDEB009B90}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ComplexCalculatorApp", "ComplexCalculatorApp\ComplexCalculatorApp.csproj", "{7EA115F4-8705-479F-9A0E-6108124827E5}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -36,5 +38,9 @@ Global
 		{5ECB360E-A0FC-442B-BD15-A7BDEB009B90}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{5ECB360E-A0FC-442B-BD15-A7BDEB009B90}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{5ECB360E-A0FC-442B-BD15-A7BDEB009B90}.Release|Any CPU.Build.0 = Release|Any CPU
+		{7EA115F4-8705-479F-9A0E-6108124827E5}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{7EA115F4-8705-479F-9A0E-6108124827E5}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{7EA115F4-8705-479F-9A0E-6108124827E5}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{7EA115F4-8705-479F-9A0E-6108124827E5}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 EndGlobal
