@@ -11,14 +11,10 @@ public class ViewCalculator
 
     public void Run()
     {
+        Greeting();
         while (true)
         {
-            var realPart = PromptDouble("Input real part: ");
-            var imaginaryPart = PromptDouble("Input imaginary part: ");
-            var complexNumber = new ComplexNumber(realPart, imaginaryPart);
-
-            _calculator.Input(complexNumber);
-
+            _calculator.Input(GetComplexNumber());
             while (true)
             {
                 var cmd = PromptString("Input command (*, -, +, /, =): ");
@@ -26,43 +22,28 @@ public class ViewCalculator
                 {
                     case "*":
                     {
-                        realPart = PromptDouble("Input real part: ");
-                        imaginaryPart = PromptDouble("Input imaginary part: ");
-                        var complexMultiplier = new ComplexNumber(realPart, imaginaryPart);
-                        _calculator.Multiply(complexMultiplier);
+                        _calculator.Multiply(GetComplexNumber());
                         continue;
                     }
                     case "-":
                     {
-                        realPart = PromptDouble("Input real part: ");
-                        imaginaryPart = PromptDouble("Input imaginary part: ");
-                        var complexSubtraction = new ComplexNumber(realPart, imaginaryPart);
-                        _calculator.Subtract(complexSubtraction);
+                        _calculator.Subtract(GetComplexNumber());
                         continue;
                     }
                     case "+":
                     {
-                        realPart = PromptDouble("Input real part: ");
-                        imaginaryPart = PromptDouble("Input imaginary part: ");
-                        var complexAddition = new ComplexNumber(realPart, imaginaryPart);
-                        _calculator.Add(complexAddition);
+                        _calculator.Add(GetComplexNumber());
                         continue;
                     }
                     case "/":
                     {
-                        realPart = PromptDouble("Input real part: ");
-                        imaginaryPart = PromptDouble("Input imaginary part: ");
-                        var complexDivision = new ComplexNumber(realPart, imaginaryPart);
-                        _calculator.Divide(complexDivision);
+                        _calculator.Divide(GetComplexNumber());
                         continue;
                     }
                 }
 
                 if (cmd != "=") continue;
-                var result = _calculator.GetResult();
-                Console.ForegroundColor = ConsoleColor.Green;
-                Console.WriteLine($"Result: {result}");
-                Console.ResetColor();
+                PrintResult();
                 break;
             }
 
@@ -72,6 +53,29 @@ public class ViewCalculator
                 break;
             }
         }
+    }
+
+    private void PrintResult()
+    {
+        var result = _calculator.GetResult();
+        Console.ForegroundColor = ConsoleColor.Green;
+        Console.WriteLine($"Result: {result}");
+        Console.ResetColor();
+    }
+
+    private static void Greeting()
+    {
+        Console.ForegroundColor = ConsoleColor.Green;
+        Console.WriteLine("Welcome to Complex Calculator!\n");
+        Console.ResetColor();
+    }
+
+    private static ComplexNumber GetComplexNumber()
+    {
+        var realPart = PromptDouble("Input real part: ");
+        var imaginaryPart = PromptDouble("Input imaginary part: ");
+        var complexNumber = new ComplexNumber(realPart, imaginaryPart);
+        return complexNumber;
     }
 
     private static string? PromptString(string message)

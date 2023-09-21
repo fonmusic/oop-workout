@@ -16,7 +16,6 @@ public class LoggerDecorator : ICalculable
         _logger.Log($"Current value of calculator {_calculator.GetResult()}." +
                    $"\nInput method called with parameter {complexNumber}");
         var result = _calculator.Input(complexNumber);
-        _logger.Log("Input method called");
         return result;
     }
 
@@ -25,7 +24,6 @@ public class LoggerDecorator : ICalculable
         _logger.Log($"Current value of calculator {_calculator.GetResult()}." +
                    $"\nAdd method called with parameter {complexNumber}");
         var result = _calculator.Add(complexNumber);
-        _logger.Log("Add method called");
         return result;
     }
     
@@ -34,7 +32,6 @@ public class LoggerDecorator : ICalculable
         _logger.Log($"Current value of calculator {_calculator.GetResult()}." +
                    $"\nSubtract method called with parameter {complexNumber}");
         var result = _calculator.Subtract(complexNumber);
-        _logger.Log("Subtract method called");
         return result;
     }
 
@@ -43,7 +40,6 @@ public class LoggerDecorator : ICalculable
         _logger.Log($"Current value of calculator {_calculator.GetResult()}." +
                    $"\nMultiply method called with parameter {complexNumber}");
         var result = _calculator.Multiply(complexNumber);
-        _logger.Log("Multiply method called");
         return result;
     }
     
@@ -52,7 +48,6 @@ public class LoggerDecorator : ICalculable
         _logger.Log($"Current value of calculator {_calculator.GetResult()}." +
                    $"\nDivide method called with parameter {complexNumber}");
         var result = _calculator.Divide(complexNumber);
-        _logger.Log("Divide method called");
         return result;
     }
 
